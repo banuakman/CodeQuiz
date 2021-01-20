@@ -37,7 +37,6 @@ var quiz = [
         answer: "all of the above"
     },
 ]
-console.log(quiz[2])
 
 // When user selects the right answer, textcontent "It's Correct!"
 // When user selects the wrong answer, textcontent "It's Wrong!"
