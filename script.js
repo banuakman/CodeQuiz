@@ -1,25 +1,5 @@
-// Create a timer attached to a button with a starting value of 75
-var timer = document.querySelector("#startTime")
-
-var timeLeft = 75
-
-// When timer is pressed start a reverse countdown
-timer.addEventListener("click", function(){
-    var timeInterval = setInterval(function() {
-        // timerEl.textContent = timeLeft + " seconds remaining";
-        console.log(timeLeft)
-        timeLeft--;
-        if (timeLeft === 40) {
-        // timerEl.textContent = "";
-        clearInterval(timeInterval);
-        }
-    
-      }, 1000);
-})
-
-// When countdown starts, start quiz
-
-// Create the quiz object: question, choices, answer
+// DEPENDENCIES===================================================
+// Create the quiz array with objects: question, choices, answer
 var quiz = [
     {
         question: "Commonly used data types DO NOT include:",
@@ -38,8 +18,37 @@ var quiz = [
     },
 ]
 
+// STARTING DATA==================================================
+var currentTime = document.querySelector("#currentTime");
+
+
+// FUNCTIONS======================================================
+
+// USER INTERRACTIONS=============================================
+// Create a timer attached to a button with a starting value of 75
+var timer = document.querySelector("#startTime")
+
+var timeLeft = 75
+
+// When timer is pressed start a reverse countdown
+// Write the remaining time to #currentTime
+timer.addEventListener("click", function(){
+    var timeInterval = setInterval(function() {
+        currentTime.textContent = timeLeft + " seconds remaining";
+        timeLeft--;
+        if (timeLeft === 0) {
+        currentTime.textContent = "Time is Up!";
+        clearInterval(timeInterval);
+        }    
+      }, 1000);
+})
+
+// When countdown starts, start quiz
+
+
+
 // When user selects the right answer, textcontent "It's Correct!"
-// When user selects the wrong answer, textcontent "It's Wrong!"
-// When user selects the wrong answer, 5 seconds will be deducted from the countdown
+// When user selects the wrong answer, textcontent "It's Wrong! 10 seconds subtracted from the clock"
+// When user selects the wrong answer, 10 seconds will be deducted from the countdown
 
 // Final score will keep track of correct answers
