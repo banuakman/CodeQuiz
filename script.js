@@ -23,7 +23,7 @@ var score = 0;
 var questionIndex = 0;
 var currentTime = document.querySelector("#currentTime");
 var questionsDiv = document.querySelector("#questionsDiv");
-
+var penalty = 10;
 // Creates new element
 var ulCreate = document.createElement("ul");
 
@@ -70,13 +70,46 @@ function render(questionIndex) {
         listItem.textContent = newItem;
         questionsDiv.appendChild(ulCreate);
         ulCreate.appendChild(listItem);
-
+        // 
+        listItem.addEventListener("click", (check));
     })
 }
 
+//Compare user choices with answer
+function check(event) {
+    var element = event.target;
 
-// When user selects the right answer, textcontent "It's Correct!"
-// When user selects the wrong answer, textcontent "It's Wrong! 10 seconds subtracted from the clock"
-// When user selects the wrong answer, 10 seconds will be deducted from the countdown
+    if (element.matches("li")) {
+        var createDiv = document.createElement("div");
+        createDiv.setAttribute("id", "createDiv");
+
+        // When user selects the right answer
+        // textcontent "It's Correct!"
+        if (element.textContent == quiz[questionIndex].answer) {
+            score++;
+            createDiv.textContent = "Correct Answer!";
+            // When user selects the wrong answer
+            // textcontent "It's Wrong! 10 seconds subtracted from the clock"
+        } else {
+            // 10 seconds will be deducted from timeLeft for wrong answers
+            timeLeft = timeLeft - penalty;
+            createDiv.textContent = "WRONG! 10 seconds penalty! The correct answer is: " + quiz[questionIndex].answer;
+        }
+
+    }
+    // Question Index determines number question user is on
+    questionIndex++;
+
+    if (questionIndex >= quiz.length) {
+        createDiv.textContent = "End of quiz!";
+        // Add an "The End" function for  user stats
+
+    } else {
+        render(questionIndex);
+    }
+    
+    questionsDiv.appendChild(createDiv);
+
+}
 
 // Final score will keep track of correct answers

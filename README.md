@@ -1,4 +1,10 @@
-# CodeQuiz
+# Code Quiz
+
+## Links
+
+Repo: https://github.com/banuakman/CodeQuiz
+
+Live Link: https://banuakman.github.io/CodeQuiz/
 
 ## User Story
 
