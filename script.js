@@ -19,10 +19,14 @@ var quiz = [
 ]
 
 // STARTING DATA==================================================
+var score = 0;
+var questionIndex = 0;
 var currentTime = document.querySelector("#currentTime");
+var questionsDiv = document.querySelector("#questionsDiv");
 
+// Creates new element
+var ulCreate = document.createElement("ul");
 
-// FUNCTIONS======================================================
 
 // USER INTERRACTIONS=============================================
 // Create a timer attached to a button with a starting value of 75
@@ -34,17 +38,42 @@ var timeLeft = 75
 // Write the remaining time to #currentTime
 timer.addEventListener("click", function(){
     var timeInterval = setInterval(function() {
-        currentTime.textContent = timeLeft + " seconds remaining";
+        currentTime.textContent = "Remaining Time: " + timeLeft;
         timeLeft--;
         if (timeLeft === 0) {
         currentTime.textContent = "Time is Up!";
+        // Stop the timer
         clearInterval(timeInterval);
-        }    
+        // Call the render function
+    }
       }, 1000);
+    render(questionIndex);
 })
 
-// When countdown starts, start quiz
+// FUNCTIONS======================================================
 
+// When countdown starts, start quiz
+// Renders questions and choices to #questionsDiv 
+function render(questionIndex) {
+    // Clear existing data 
+    questionsDiv.innerHTML = "";
+    ulCreate.innerHTML = "";
+    // For loops to loop through all info in array
+    for (var i = 0; i < quiz.length; i++) {
+        // Add question
+        var userQuestion = quiz[questionIndex].question;
+        var userChoices = quiz[questionIndex].choices;
+        questionsDiv.textContent = userQuestion;
+        }
+    // New list Item for each of multible choices
+    userChoices.forEach(function (newItem) {
+        var listItem = document.createElement("li");
+        listItem.textContent = newItem;
+        questionsDiv.appendChild(ulCreate);
+        ulCreate.appendChild(listItem);
+
+    })
+}
 
 
 // When user selects the right answer, textcontent "It's Correct!"
