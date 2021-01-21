@@ -31,7 +31,6 @@ var ulCreate = document.createElement("ul");
 // USER INTERRACTIONS=============================================
 // Create a timer attached to a button with a starting value of 75
 var timer = document.querySelector("#startTime")
-
 var timeLeft = 75
 
 // When timer is pressed start a reverse countdown
@@ -53,7 +52,7 @@ timer.addEventListener("click", function(){
 // FUNCTIONS======================================================
 
 // When countdown starts, start quiz
-// Renders questions and choices to #questionsDiv 
+// Render questions and choices to #questionsDiv 
 function render(questionIndex) {
     // Clear existing data 
     questionsDiv.innerHTML = "";
